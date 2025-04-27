@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "836403248897",
+    "project_id": "commereceee",
+    "storage_bucket": "commereceee.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836403248897:android:4a496a058db6f1a8192500",
+        "android_client_info": {
+          "package_name": "com.example.ecommerece_fruites"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrgAl-LbKcpud3FajgezPE57f1eJazQmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

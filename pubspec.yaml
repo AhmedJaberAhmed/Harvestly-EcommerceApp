@@ -1,0 +1,74 @@
+name: ecommerece_fruites
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  dots_indicator: ^3.0.0
+  firebase_core: ^3.11.0
+  dio: ^5.8.0+1
+  flutter_facebook_auth: ^7.1.1
+  provider: ^6.1.4
+  sign_in_with_apple: ^6.1.4
+  crypto: ^3.0.6
+  uuid: ^4.5.1
+  sqflite:
+  cloud_firestore: ^5.6.4
+  firebase_auth: ^5.4.2
+  skeletonizer: ^1.4.3
+  cached_network_image: ^3.4.1
+  dartz: ^0.10.1
+  flutter_bloc: ^9.0.0
+  get_it: ^8.0.3
+  modal_progress_hud_nsn: ^0.5.1
+  flutter_svg_provider: ^1.0.7
+  top_snackbar_flutter: ^3.2.0
+  google_sign_in: ^6.2.2
+  equatable: ^2.0.7
+  flutter_paypal_payment: ^1.0.8
+
+  shared_preferences: ^2.5.2
+  flutter_svg: ^2.0.17
+  intl: ^0.19.0 # Downgraded to match flutter_localizations
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.14.3
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - lib/features/splash/
+    - assets/images/
+    - assets/images/me.jpg
+
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: assets/fonts/Cairo-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Cairo-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Cairo-Bold.ttf
+          weight: 700
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_Icon.png"
+  min_sdk_android: 21
