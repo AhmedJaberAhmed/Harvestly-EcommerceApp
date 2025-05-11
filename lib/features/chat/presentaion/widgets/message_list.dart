@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'message_bubble.dart';
-
+//messege
 class MessageList extends StatelessWidget {
   final List<Map<String, String>> messages;
 
