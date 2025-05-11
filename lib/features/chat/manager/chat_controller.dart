@@ -33,7 +33,18 @@ class ChatController extends ChangeNotifier {
 
   void _showError(BuildContext context, String errorMessage) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(errorMessage)),
+      SnackBar(
+        backgroundColor: Colors.red, // Red background for error
+        content: Text(
+          errorMessage,
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        behavior: SnackBarBehavior.floating, // Optional: makes it float a bit
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10), // Optional: rounded corners
+        ),
+      ),
     );
   }
+
 }

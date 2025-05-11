@@ -14,13 +14,15 @@ class ChatScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => ChatController(),
       child: Scaffold(
-        appBar: AppBar(
+        appBar:AppBar(
           backgroundColor: AppColors.primaryColor,
+          iconTheme: IconThemeData(color: Colors.white), // this makes the arrow white
           title: Text(
             'AI Fruit Chat',
             style: TextStyles.bold19.copyWith(color: Colors.white),
           ),
         ),
+
         body: Consumer<ChatController>(
           builder: (context, chatController, _) => Column(
             children: [
