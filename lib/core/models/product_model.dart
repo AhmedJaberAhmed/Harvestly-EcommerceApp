@@ -8,6 +8,8 @@ class ProductModel {
   final String name;
   final String code;
   final String description;
+  final String categoryCode; // NEW
+
   final num price;
 
   final bool isFeatured;
@@ -24,6 +26,8 @@ class ProductModel {
       {required this.name,
         required this.code,
         required this.description,
+        required this.categoryCode, // NEW
+
         required this.expirationsMonths,
         required this.numberOfCalories,
         required this.avgRating,
@@ -45,6 +49,8 @@ class ProductModel {
         description: json['description'] ?? '',
         expirationsMonths: json['expirationsMonths'] ?? 0,
         numberOfCalories: json['numberOfCalories'] ?? 0,
+        categoryCode: json['categoryCode'] ?? '',
+
         unitAmount: json['unitAmount'] ?? 0,
         sellingCount: json['sellingCount'] ?? 0,
         price: json['price'] ?? 0,
@@ -69,18 +75,21 @@ class ProductModel {
 
   ProductEntity toEntity() {
     return ProductEntity(
-        name: name,
-        code: code,
-        description: description,
-        price: price,
-        reviews: reviews.map((e) => e.toEntity()).toList(),
-        expirationsMonths: expirationsMonths,
-        numberOfCalories: numberOfCalories,
-        unitAmount: unitAmount,
-        isOrganic: isOrganic,
-        isFeatured: isFeatured,
-        imageUrl: imageUrl);
+      name: name,
+      code: code,
+      categoryCode: categoryCode,
+      description: description,
+      price: price,
+      reviews: reviews.map((e) => e.toEntity()).toList(),
+      expirationsMonths: expirationsMonths,
+      numberOfCalories: numberOfCalories,
+      unitAmount: unitAmount,
+      isOrganic: isOrganic,
+      isFeatured: isFeatured,
+      imageUrl: imageUrl,
+    );
   }
+
 
   toJson() {
     return {
@@ -88,6 +97,8 @@ class ProductModel {
       'code': code,
       'description': description,
       'price': price,
+      'categoryCode': categoryCode,
+
       'isFeatured': isFeatured,
       'imageUrl': imageUrl,
       'expirationsMonths': expirationsMonths,
@@ -102,6 +113,7 @@ class ProductModel {
     return ProductModel(
       name: entity.name,
       code: entity.code,
+
       description: entity.description,
       price: entity.price,
       isFeatured: entity.isFeatured,
@@ -112,7 +124,7 @@ class ProductModel {
       avgRating: entity.avgRating,
       unitAmount: entity.unitAmount,
       sellingCount: 0, // You can adjust this if needed
-      reviews: entity.reviews.map((e) => ReviewModel.fromEntity(e)).toList(),
+      reviews: entity.reviews.map((e) => ReviewModel.fromEntity(e)).toList(), categoryCode: '',
     );
   }
 

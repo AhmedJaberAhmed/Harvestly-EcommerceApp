@@ -1,25 +1,20 @@
 part of 'favourites_cubit.dart';
 
-@immutable
-sealed class FavouritesState {}
 
-final class FavouritesInitial extends FavouritesState {}
+abstract class FavoriteState {}
 
-final class FavouritesAdded extends FavouritesState {
-  FavouritesAdded({required this.favourites});
-  List<ProductEntity> favourites;
+class FavoriteInitial extends FavoriteState {}
+
+class FavoriteLoading extends FavoriteState {}
+
+class FavoriteLoaded extends FavoriteState {
+  final List<FavoriteModel> favorites;
+
+  FavoriteLoaded(this.favorites);
 }
 
-final class FavouritesRemoved extends FavouritesState {}
+class FavoriteError extends FavoriteState {
+  final String message;
 
-final class FavouritesFailure extends FavouritesState {
-  final String errMessage;
-  FavouritesFailure(this.errMessage);
+  FavoriteError(this.message);
 }
-
-final class FavouritesSuccess extends FavouritesState {
-  List<ProductEntity> favourites;
-  FavouritesSuccess({required this.favourites});
-}
-
-final class FavouritesLoading extends FavouritesState {}

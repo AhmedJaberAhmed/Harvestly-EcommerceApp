@@ -1,10 +1,39 @@
+import 'dart:async';
+
+import 'package:ecommerece_fruites/core/cubits/products_cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../utils/app_text_styles.dart';
 
-class SearchTextField extends StatelessWidget {
+class SearchTextField extends StatefulWidget {
   const SearchTextField({super.key});
+
+  @override
+  State<SearchTextField> createState() => _SearchTextFieldState();
+}
+
+class _SearchTextFieldState extends State<SearchTextField> {
+  Timer? _debounce;
+
+  void _onSearchChanged(String value) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+
+    _debounce = Timer(Duration(milliseconds: 500), () {
+      if (value.isNotEmpty) {
+        context.read<ProductsCubit>().searchProductsByName(value.trim());
+      } else {
+        context.read<ProductsCubit>().getBestSellingProducts();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +52,16 @@ class SearchTextField extends StatelessWidget {
           ),
         ],
       ),
-
       child: TextField(
         keyboardType: TextInputType.text,
+        onChanged: _onSearchChanged,
         decoration: InputDecoration(
           prefixIcon: Padding(
             padding: EdgeInsets.all(13.0),
             child: SvgPicture.asset("assets/images/search_icon.svg"),
           ),
           suffixIcon: Padding(
-            padding: EdgeInsets.all(10.0), // Adjust padding for proper alignment
+            padding: EdgeInsets.all(10.0),
             child: SvgPicture.asset("assets/images/filter.svg"),
           ),
           hintStyle: TextStyles.regular13.copyWith(

@@ -16,3 +16,7 @@ final class ProductsFailure extends ProductsState {
 
   ProductsFailure( this.errMessege);
 }
+class CategoriesSuccess extends ProductsState {
+  final List<CategoryEntity> categories;
+  CategoriesSuccess(this.categories);
+}

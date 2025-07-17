@@ -13,6 +13,7 @@ class Bestsellingviewbody extends StatelessWidget {
         ProductsGridView(products: [
 
     ProductEntity(
+      categoryCode: "",
     name: 'Apple',
       code: '123',
       description: 'Fresh apple',

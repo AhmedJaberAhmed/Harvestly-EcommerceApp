@@ -14,12 +14,15 @@ dependencies:
   dots_indicator: ^3.0.0
   firebase_core: ^3.11.0
   dio: ^5.8.0+1
+
+
   flutter_facebook_auth: ^7.1.1
   provider: ^6.1.4
   sign_in_with_apple: ^6.1.4
   crypto: ^3.0.6
   uuid: ^4.5.1
   sqflite:
+  path_provider:
   cloud_firestore: ^5.6.4
   firebase_auth: ^5.4.2
   skeletonizer: ^1.4.3
@@ -32,7 +35,12 @@ dependencies:
   top_snackbar_flutter: ^3.2.0
   google_sign_in: ^6.2.2
   equatable: ^2.0.7
+  shimmer_animation: ^2.2.2
+  shimmer: ^3.0.0
+  animate_do: ^4.2.0
   flutter_paypal_payment: ^1.0.8
+  hive: ^2.2.3
+  path: ^1.8.3
 
   shared_preferences: ^2.5.2
   flutter_svg: ^2.0.17
@@ -70,5 +78,5 @@ flutter:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/app_Icon.png"
+  image_path: "assets/images/aproducte.png"
   min_sdk_android: 21

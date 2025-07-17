@@ -136,7 +136,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                   icon: const Icon(Icons.remove, color: Colors.grey),
                   onPressed: () {
                     final cartItem = CartItemEntity(productEntity: widget.productEntity, quantity: _getProductQuantity(state));
-                    context.read<CartCubit>().deleteCartItem(cartItem);
+                    context.read<CartCubit>().decreaseCartItem(cartItem);
                   },
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),

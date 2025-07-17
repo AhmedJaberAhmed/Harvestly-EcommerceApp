@@ -40,7 +40,18 @@ class  CartEntity {
     return CartItemEntity(productEntity: product,quantity: 1);
   }
 
-
+  void decCartItem(CartItemEntity cartItemEntity) {
+    for (var item in cartItems) {
+      if (item.productEntity == cartItemEntity.productEntity) {
+        if (item.quantity > 1) {
+          item.quantity--;
+        } else {
+          cartItems.remove(item);
+        }
+        break;
+      }
+    }
+  }
 
 
 }

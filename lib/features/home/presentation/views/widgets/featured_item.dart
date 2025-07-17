@@ -1,7 +1,13 @@
+import 'package:ecommerece_fruites/core/repos/products_repo/products_repo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
+import '../../../../../core/cubits/products_cubit/products_cubit.dart';
+import '../../../../../core/services/get_it_services.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../categories/presentation/widgets/CategoryCard.dart';
+import '../../../../categories/presentation/widgets/category_screen.dart';
 import 'featured_item_button.dart';
 
 class FeaturedItem extends StatelessWidget {
@@ -41,15 +47,10 @@ class FeaturedItem extends StatelessWidget {
                       SizedBox(
                         height: 25,
                       ),
-                      Text(
-                        'عروض العيد',
-                        style: TextStyles.regular13.copyWith(
-                          color: Colors.white,
-                        ),
-                      ), // Text
+                   // Text
                       Spacer(),
                       Text(
-                        'خصم 25%',
+                        'Discover Categories',
                         style: TextStyles.bold19.copyWith(
                           color: Colors.white,
                         ),
@@ -59,7 +60,21 @@ class FeaturedItem extends StatelessWidget {
                       ),
                       Spacer(),
                       FeaturedItemButton(
-                        onPressed: () {},
+                        onPressed: () {
+
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => BlocProvider(
+                                create: (_) => ProductsCubit(getIt.get<ProductsRepo>()),
+                                child: const CategoryScreen(),
+                              ),
+                            ),
+                          );
+
+
+                        },
                       ),
                       SizedBox(height: 29)
                     ],

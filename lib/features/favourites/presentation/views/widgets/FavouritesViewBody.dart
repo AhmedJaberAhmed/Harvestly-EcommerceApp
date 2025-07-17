@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/me/we.dart';
-import '../../../../../core/widgets/Notification_widget.dart';
 import '../../../../../core/widgets/custom_appbar.dart';
 import '../../../../../core/widgets/search_text_field.dart';
 
@@ -16,8 +15,8 @@ class Favouritesviewbody extends StatefulWidget {
 class _FavouritesviewbodyState extends State<Favouritesviewbody> {
   @override
   void initState() {
-    context.read<FavouritesCubit>().getFavouritesToFireBse();
     super.initState();
+    context.read<FavoriteCubit>().loadFavorites();
   }
   @override
   Widget build(BuildContext context) {

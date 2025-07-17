@@ -42,16 +42,7 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        // BlocProvider<CartCubit>(
-        //   create: (context) => CartCubit(),
-        // ),
-        BlocProvider<FavouritesCubit>(
-          create: (context) => FavouritesCubit(getIt.get<ProductsRepo>()),
-        ),
-      ],
-      child: Scaffold(
+    return   Scaffold(
         bottomNavigationBar: CustomButtonNavigationBar(
           selectedIndex: selectedIndex,
           onTabTapped: onTabTapped,
@@ -62,7 +53,7 @@ class _MainViewState extends State<MainView> {
             pages: _pages,
           ),
         ),
-      ),
+
     );
   }
 }

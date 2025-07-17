@@ -2,6 +2,7 @@ import '../entities/product_Entity.dart';
 
 ProductEntity getDummyProduct() {
   return ProductEntity(
+    categoryCode: "Fruites",
     name: 'Apple',
     code: '123',
     description: 'Fresh apple',

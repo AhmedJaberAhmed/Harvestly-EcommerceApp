@@ -9,6 +9,81 @@ import '../../features/home/presentation/views/ItemDetailsPage.dart';
 import '../helper_functions/getDummyData.dart';
 
 
+
+
+
+
+
+class FavoritesGridViewBlocBuilder extends StatelessWidget {
+  const FavoritesGridViewBlocBuilder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FavoriteCubit, FavoriteState>(
+      builder: (context, state) {
+        if (state is FavoriteLoading) {
+          return const SliverToBoxAdapter(
+            child: Center(child: CircularProgressIndicator()),
+          );
+        } else if (state is FavoriteLoaded) {
+          // You must convert FavoriteModel to ProductEntity to use FruitItemCard
+          final favorites = state.favorites.map((fav) {
+            return ProductEntity(
+              code: fav.code,
+              name: fav.name,
+              description: fav.description,
+              price: fav.price,
+              numberOfCalories: fav.numberOfCalories,
+              reviews: [],
+              unitAmount: 1,
+              categoryCode: '',
+              imageUrl: fav.imageUrl,
+              isFeatured: false, expirationsMonths: 1,
+            );
+          }).toList();
+
+          return FavoritesGridView(favorites: favorites);
+        } else if (state is FavoriteError) {
+          return SliverToBoxAdapter(
+            child: Center(child: Text(state.message)),
+          );
+        } else {
+          return const SliverToBoxAdapter(
+            child: Center(child: Text("No favorites yet")),
+          );
+        }
+      },
+    );
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class FavoritesGridView extends StatelessWidget {
   const FavoritesGridView({super.key, required this.favorites});
 
@@ -40,29 +115,3 @@ class FavoritesGridView extends StatelessWidget {
   }
 }
 
-
-class FavoritesGridViewBlocBuilder extends StatelessWidget {
-  const FavoritesGridViewBlocBuilder({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<FavouritesCubit, FavouritesState>(
-      builder: (context, state) {
-        if (state is FavouritesSuccess) {
-          return FavoritesGridView(
-            favorites: state.favourites,
-          );
-        } else if (state is FavouritesFailure) {
-          return Text(state.errMessage);
-        } else {
-          return Skeletonizer.sliver(
-            enabled: true,
-            child: FavoritesGridView(
-              favorites: getDummyProducts(),
-            ),
-          );
-        }
-      },
-    );
-  }
-}

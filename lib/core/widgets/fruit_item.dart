@@ -129,45 +129,39 @@ class FruitItemCard extends StatelessWidget {
             Positioned(
               top: 8,
               right: 8,
-              child: BlocBuilder<FavouritesCubit, FavouritesState>(
+              child: BlocBuilder<FavoriteCubit, FavoriteState>(
                 builder: (context, state) {
-                  final isFavourited = context
-                      .read<FavouritesCubit>()
-                      .isProductFavourited(productEntity);
+                  final cubit = FavoriteCubit.get(context);
 
-                  return IconButton(
-                    onPressed: () {
-                      if (!isFavourited) {
-                        context
-                            .read<FavouritesCubit>()
-                            .addFavouritesToFireBse(productEntity);
+                  return FutureBuilder<bool>(
+                    future: cubit.isFavorite(productEntity.code),
+                    builder: (context, snapshot) {
+                      final isFav = snapshot.data ?? false;
 
-                        showFavoriteSnackbar(context, true);
-                      } else {
-                        context
-                            .read<FavouritesCubit>()
-                            .removeFromFavourites(productEntity);
-                        showFavoriteSnackbar(context, false);
-                      }
+                      return IconButton(
+                        icon: Icon(
+                          isFav ? Icons.favorite : Icons.favorite_border,
+                          color: Colors.red,
+                        ),
+                        onPressed: () async {
+                          final favModel = FavoriteModel(
+                            code: productEntity.code,
+                            name: productEntity.name,
+                            description: productEntity.description,
+                            price: productEntity.price,
+                            numberOfCalories: productEntity.numberOfCalories,
+                            imageUrl: productEntity.imageUrl
+                          );
+
+                          await cubit.toggleFavorite(favModel);
+
+                        },
+                      );
                     },
-                    icon: AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 300),
-                      transitionBuilder: (child, animation) => ScaleTransition(
-                        scale: animation,
-                        child: child,
-                      ),
-                      child: Icon(
-                        isFavourited ? Icons.favorite : Icons.favorite_border,
-                        key: ValueKey(isFavourited),
-                        color: isFavourited
-                            ? Colors.red
-                            : Colors
-                                .grey,
-                      ),
-                    ),
                   );
                 },
-              ),
+              )
+
             ),
           ],
         );
